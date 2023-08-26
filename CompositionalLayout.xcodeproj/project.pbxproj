@@ -19,6 +19,7 @@
 		5042D7EB2A971A0400E2EE91 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042D7EA2A971A0400E2EE91 /* SaleCollectionViewCell.swift */; };
 		5042D7EE2A97271900E2EE91 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042D7ED2A97271900E2EE91 /* CategoryCollectionViewCell.swift */; };
 		5042D7F02A97400F00E2EE91 /* ExampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5042D7EF2A97400F00E2EE91 /* ExampleCollectionViewCell.swift */; };
+		505FBF7E2A9A4C8E00DB68B0 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505FBF7D2A9A4C8E00DB68B0 /* HeaderSupplementaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5042D7EA2A971A0400E2EE91 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
 		5042D7ED2A97271900E2EE91 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5042D7EF2A97400F00E2EE91 /* ExampleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewCell.swift; sourceTree = "<group>"; };
+		505FBF7D2A9A4C8E00DB68B0 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				5042D7EA2A971A0400E2EE91 /* SaleCollectionViewCell.swift */,
 				5042D7ED2A97271900E2EE91 /* CategoryCollectionViewCell.swift */,
 				5042D7EF2A97400F00E2EE91 /* ExampleCollectionViewCell.swift */,
+				505FBF7D2A9A4C8E00DB68B0 /* HeaderSupplementaryView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				5042D7F02A97400F00E2EE91 /* ExampleCollectionViewCell.swift in Sources */,
 				5042D7D32A95F99B00E2EE91 /* SceneDelegate.swift in Sources */,
 				5042D7E72A960EA400E2EE91 /* ListSection.swift in Sources */,
+				505FBF7E2A9A4C8E00DB68B0 /* HeaderSupplementaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

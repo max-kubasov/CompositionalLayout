@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let collectionViewLayot = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayot)
-        collectionView.backgroundColor = .none
+        collectionView.backgroundColor = .darkGray
         collectionView.bounces = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -46,6 +46,7 @@ class ViewController: UIViewController {
         
         setupView()
         setConstraints()
+        setDataSource()
     }
     
     private func setupView() {
@@ -58,6 +59,8 @@ class ViewController: UIViewController {
         
         collectionView.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: "First")
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "Category")
+        collectionView.register(ExampleCollectionViewCell.self, forCellWithReuseIdentifier: "Example")
+        collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
     }
     
     private func setDataSource() {
@@ -113,10 +116,24 @@ extension ViewController: UICollectionViewDataSource {
             }
             cell.configureCell(imageName: example[indexPath.row].image)
             return cell
-            
         }
-        
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderSupplementaryView", for: indexPath) as! HeaderSupplementaryView
+            header.configureHeader(categoryName: sections[indexPath.section].title)
+            return header
+            
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    
+    
 }
 
 
@@ -133,8 +150,13 @@ extension ViewController {
             
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            //titleLabel.heightAnchor.constraint(equalToConstant: 60)
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            titleLabel.heightAnchor.constraint(equalToConstant: 60),
+            
+            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -10)
         ])
     }
 }
