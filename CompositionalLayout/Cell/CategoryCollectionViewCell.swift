@@ -21,7 +21,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
        let categoryLabel = UILabel()
         categoryLabel.text = "Category"
         categoryLabel.textAlignment = .center
-        categoryLabel.font = UIFont.systemFont(ofSize: 20)
+        categoryLabel.font = UIFont.systemFont(ofSize: 16)
         categoryLabel.textColor = .black
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         return categoryLabel
@@ -72,7 +72,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             categoryImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             categoryImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             categoryImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            categoryImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+            categoryImageView.bottomAnchor.constraint(equalTo: categoryLabel.topAnchor, constant: 0),
+            
+
+            
+
             
         ])
     }

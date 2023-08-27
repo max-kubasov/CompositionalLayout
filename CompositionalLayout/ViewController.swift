@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let collectionViewLayot = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayot)
-        collectionView.backgroundColor = .darkGray
+        collectionView.backgroundColor = .white
         collectionView.bounces = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -96,14 +96,12 @@ extension ViewController {
     private func createLayoutSection(group: NSCollectionLayoutGroup,
                                      behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
                                      interGroupSection: CGFloat,
-                                     supplementalyItems: [NSCollectionLayoutBoundarySupplementaryItem],
-                                     contentInsets: Bool) -> NSCollectionLayoutSection {
+                                     supplementalyItems: [NSCollectionLayoutBoundarySupplementaryItem]) -> NSCollectionLayoutSection {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = behavior
         section.interGroupSpacing = interGroupSection
         section.boundarySupplementaryItems = supplementalyItems
-        section.supplementariesFollowContentInsets = contentInsets
         
         return section
     }
@@ -114,7 +112,7 @@ extension ViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2)), subitems: [item])
         
-        let section = createLayoutSection(group: group, behavior: .groupPaging, interGroupSection: 5, supplementalyItems: [], contentInsets: false)
+        let section = createLayoutSection(group: group, behavior: .groupPaging, interGroupSection: 5, supplementalyItems: [])
        
         section.contentInsets = .init(top: 0, leading: -10, bottom: 0, trailing: 0)
         
@@ -133,8 +131,7 @@ extension ViewController {
         let section = createLayoutSection(group: group,
                                           behavior: .none,
                                           interGroupSection: 10,
-                                          supplementalyItems: [supplementaryHeaderItem()],
-                                          contentInsets: false)
+                                          supplementalyItems: [supplementaryHeaderItem()])
        
         section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
         
@@ -153,8 +150,7 @@ extension ViewController {
         let section = createLayoutSection(group: group,
                                           behavior: .continuous,
                                           interGroupSection: 10,
-                                          supplementalyItems: [supplementaryHeaderItem()],
-                                          contentInsets: false)
+                                          supplementalyItems: [supplementaryHeaderItem()])
        
         section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
         
