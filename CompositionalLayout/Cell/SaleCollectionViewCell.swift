@@ -18,6 +18,9 @@ class SaleCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super .init(frame: frame)
+        
+        setupView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {

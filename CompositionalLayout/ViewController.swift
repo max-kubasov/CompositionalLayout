@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(collectionView)
         
-        collectionView.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: "First")
+        collectionView.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: "Sale")
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "Category")
         collectionView.register(ExampleCollectionViewCell.self, forCellWithReuseIdentifier: "Example")
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
@@ -195,7 +195,7 @@ extension ViewController: UICollectionViewDataSource {
         switch sections[indexPath.section] {
             
         case .sales(let sale):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "First", for: indexPath) as? SaleCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Sale", for: indexPath) as? SaleCollectionViewCell
             else {
                 return UICollectionViewCell()
             }
