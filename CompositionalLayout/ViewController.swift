@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let collectionViewLayot = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayot)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "CustomWhiteCollor")
         collectionView.bounces = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -112,9 +112,9 @@ extension ViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2)), subitems: [item])
         
-        let section = createLayoutSection(group: group, behavior: .groupPaging, interGroupSection: 5, supplementalyItems: [])
+        let section = createLayoutSection(group: group, behavior: .groupPaging, interGroupSection: 10, supplementalyItems: [])
        
-        section.contentInsets = .init(top: 0, leading: -10, bottom: 0, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
         
         return section
     }
@@ -127,6 +127,7 @@ extension ViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                                                          heightDimension: .fractionalHeight(0.1)),
                                                        subitems: [item])
+        group.interItemSpacing = .flexible(10)
         
         let section = createLayoutSection(group: group,
                                           behavior: .none,
