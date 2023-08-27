@@ -61,6 +61,7 @@ class ViewController: UIViewController {
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "Category")
         collectionView.register(ExampleCollectionViewCell.self, forCellWithReuseIdentifier: "Example")
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
+        collectionView.collectionViewLayout = createLayout()
     }
     
     private func setDataSource() {
@@ -69,6 +70,110 @@ class ViewController: UIViewController {
     }
     
 }
+
+
+
+//MARK: - Create Layout
+
+extension ViewController {
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self = self else { return nil }
+            let section = self.sections[sectionIndex]
+            switch section {
+            case .sales(_):
+                return self.createSalesSection()
+            case .category(_):
+                return self.createCategorySection()
+            case .example(_):
+                return self.createExampleSection()
+            }
+        }
+    }
+    
+    private func createLayoutSection(group: NSCollectionLayoutGroup,
+                                     behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
+                                     interGroupSection: CGFloat,
+                                     supplementalyItems: [NSCollectionLayoutBoundarySupplementaryItem],
+                                     contentInsets: Bool) -> NSCollectionLayoutSection {
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = behavior
+        section.interGroupSpacing = interGroupSection
+        section.boundarySupplementaryItems = supplementalyItems
+        section.supplementariesFollowContentInsets = contentInsets
+        
+        return section
+    }
+    
+    private func createSalesSection() -> NSCollectionLayoutSection {
+        
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2)), subitems: [item])
+        
+        let section = createLayoutSection(group: group, behavior: .groupPaging, interGroupSection: 5, supplementalyItems: [], contentInsets: false)
+       
+        section.contentInsets = .init(top: 0, leading: -10, bottom: 0, trailing: 0)
+        
+        return section
+    }
+    
+    private func createCategorySection() -> NSCollectionLayoutSection {
+        
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.3),
+                                                            heightDimension: .fractionalHeight(1)))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                                         heightDimension: .fractionalHeight(0.1)),
+                                                       subitems: [item])
+        
+        let section = createLayoutSection(group: group,
+                                          behavior: .none,
+                                          interGroupSection: 10,
+                                          supplementalyItems: [supplementaryHeaderItem()],
+                                          contentInsets: false)
+       
+        section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        return section
+    }
+    
+    private func createExampleSection() -> NSCollectionLayoutSection {
+        
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                                            heightDimension: .fractionalHeight(1)))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9),
+                                                                         heightDimension: .fractionalHeight(0.45)),
+                                                       subitems: [item])
+        
+        let section = createLayoutSection(group: group,
+                                          behavior: .continuous,
+                                          interGroupSection: 10,
+                                          supplementalyItems: [supplementaryHeaderItem()],
+                                          contentInsets: false)
+       
+        section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
+        
+        return section
+    }
+    
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        .init(layoutSize: .init(widthDimension: .fractionalWidth(1),
+                                heightDimension: .estimated(30)),
+              elementKind: UICollectionView.elementKindSectionHeader,
+              alignment: .top)
+    }
+    
+}
+
+
+
+
 
 
 // MARK: UICollectionViewDelegate, UICollectionViewDataSource
